@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: index.html
+    destination: /var/www/html/
+hooks:
+  BeforeInstall:
+    - location: aws-codepipeline-s3-aws-codedeploy_linux-master/scripts/install_dependencies
+      timeout: 300
+      runas: root
+    - location: aws-codepipeline-s3-aws-codedeploy_linux-master/scripts/start_server
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: aws-codepipeline-s3-aws-codedeploy_linux-master/scripts/stop_server
+      timeout: 300
+      runas: root
+
